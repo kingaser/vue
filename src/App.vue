@@ -1,13 +1,16 @@
 <template>
   <div>
+    <p> ==== v-bind 이미지 학습 ==== </p>
     <img :src="imageUrl1" :alt="imageAlt" style="width: 60%; height: auto" /><br/>
     <img :src="imageUrl2" :alt="imageAlt" style="width: 60%; height: auto" /><br/>
     <button :disabled="isDisabled">버튼</button>
     <div :[attributeName]="value">동적 속성명</div>
     <!-- <div title='툴틱 테스트'></div>-->
+     <p> ==== 툴틱 학습 ==== </p>
      <div v-bind="objectOfAttrs">다중 속성 바인딩</div>
      <!-- <div id="container"class="wrapper"></div>-->
     <div>
+      <p> ==== 보간법 학습 ==== </p>
       <h1>{{ message }}</h1> <!-- 보간법. 상태변수 message.value의 값을 가져옴 -->
       <button @click="count++">+</button>
       <button @click="count--">-</button>
@@ -15,6 +18,7 @@
     </div>
 
     <div>
+      <p> ==== v-model 학습 ==== </p>
       <form @submit.prevent="onSubmit">
         <input @keyup.enter="search" v-model="query" />
       </form>
@@ -22,17 +26,20 @@
     <br/><br/>
 
     <div>
+      <p> ==== 텍스트 학습 ==== </p>
       <!-- 텍스트 입력 -->
       <input @keyup.enter="search" v-model="text" placeholder="텍스트 입력">
       <p>입력값 : {{ text }}</p>
       <input @keyup.enter="search" v-model.lazy.trim="lazyText" placeholder="텍스트 입력">
       <p>Lazy Text : {{ lazyText }}</p>
       <!-- 체크박스 -->
+       <p> ==== 체크박스 학습 ==== </p>
       <input type="checkbox" v-model="checked" id="checkbox" />
       <label for="checkbox">{{ checked }}</label>
       <br/><br/>
       <!-- 다중 체크박스 -->
       <div>
+        <p> ==== 다중 체크박스 학습 ==== </p>
         <input type="checkbox" value="사과" v-model="fruits" id="apple" />
         <label for="apple">사과</label>
         <input type="checkbox" value="바나나" v-model="fruits" id="banana" />
@@ -43,6 +50,7 @@
       </div>
       <br/><br/>
       <!-- radio 버튼 -->
+       <p> ==== radio 버튼 학습 ==== </p>
       <input type="radio" value="남성" v-model="gender" />
       <label for="male">남성</label>
       <input type="radio" value="여성" v-model="gender" />
@@ -50,6 +58,7 @@
       <p>성별 : {{ gender }}</p>
       <br/><br/>
       <!-- select 버튼 -->
+       <p> ==== select 버튼 학습 ==== </p>
       <select v-model="selected">
         <option disabled value="00" selected>선택하세요</option>
         <option value="서울">서울</option>
@@ -87,8 +96,29 @@
         </ul>
       </div>
       <br/><br/>
+      <!-- v-slot 학습 -->
+      <div>
+        <p> ==== v-slot 학습 ==== </p>
+        <ChildSlot>
+          <p>부모가 자식한테 보내는 컨텐츠로 v-slot 문법으로 전달</p>
+        </ChildSlot>
+        <ChildSlotName>
+          <template #header>
+            <h1>제목</h1>
+          </template>
+          <p>본문</p>
+          <template #footer>
+            <p>바닥글</p>
+          </template>
+        </ChildSlotName>
+        <ChildSlotScope v-slot="{text, count}">
+          {{ text }} {{ count }}
+        </ChildSlotScope>
+      </div>
+      <br/><br/>
       <!-- Props 학습 -->
       <div>
+        <p> ==== Props 학습 ==== </p>
         <h1>부모/자식간에 컴포넌트 호출</h1>
         <ChildComponent msg="부모가 자식한테 보내는 메세지" @send-message="handleMessage"/>
         <p>자식이 보낸 값: {{ childMessage }}</p>
@@ -97,6 +127,7 @@
     <br/><br/>
     <!-- reactiv 학습 -->
     <div>
+      <p> ==== reacticve 학습 ==== </p>
       <p>이름 : {{ user1.name }}</p>
       <p>나이 : {{ user1.age }}</p>
       <p>취미 : {{ user1.hobbise }}</p>
@@ -104,22 +135,26 @@
     </div>
     <br/><br/>
     <!-- computed 학습 -->
+     <p> ==== computed 학습 ==== </p>
     <input v-model="total"  /> = <input v-model="counter1" /> * <input v-model="price" />
     <br/><br/>
     <!-- watch 학습(얕은 감시 vs 깊은 감시) -->
     <div>
+      <p> ==== watch 학습 ==== </p>
       <p>Count : {{ state.nested.count }}</p>
       <button @click="state.nested.count++">증가</button>
     </div>
     <br/><br/>
     <!-- Template Ref 학습 -->
     <div>
+      <p> ==== Template Ref 학습 ==== </p>
       <input ref="nameRef" v-model.trim.lazy="username" placeholder="이름을 입력하세요." />
       <button @click="registry">회원등록</button>
     </div>
     <br/><br/>
     <!-- pinia 학습 -->
     <div class="counter-bax">
+      <p> ==== Pinia 학습 ==== </p>
       <h2>Pinia Counter</h2>
       <div class="value">
         <span>Count</span>
@@ -137,6 +172,7 @@
     <br/><br/>
     <!-- Composable 학습 -->
     <div class="page">
+      <p> ==== Composable 학습 ==== </p>
       <button class="btn" @click="open">모달 열기</button>
       <ModalBox v-if="isOpen" @close="close">
         <h3>알림</h3>
@@ -145,16 +181,56 @@
       </ModalBox>
     </div>
     <br/><br/>
+    <!-- teleport 학습 -->
+    <div>
+      <p> ==== Teleport 학습 ==== </p>
+      <h1>Teleport 모달 테스트</h1>
+      <div class="box">
+        <p>이 박스는 높이가 낮고 overflow는 hidden입니다.</p>
+        <button @click="showModal = true">모달 열기</button>
+        <!-- z-index 계층을 건너 뛰어서 최상위로 이동 -->
+        <Teleport to="body">
+          <div v-if="showModal" class="modal">
+            <div class="modal-content">
+              <h2>모달 제목</h2>
+              <p>이 모달은 부모 박스 안에서 렌더링 됩니다.</p>
+              <p>그래서, 부모 영역을 벗어나는 부분은 잘립니다.</p>
+              <button @click="showModal = false">닫기</button>
+            </div>
+          </div>
+        </Teleport>
+      </div>
+    </div>
+    <br/><br/>
+    <!-- Suspense 학습 -->
+     <p> ==== Suspense 학습 ==== </p>
+    <Suspense>
+      <template #default>
+        <UserProfile />
+      </template>
+      <template #fallback>
+        <!-- 대기 중에 보이는 UI -->
+        <div class="loading">로딩 중...</div>
+        <div class="loading">로딩 중...</div>
+        <div class="loading">로딩 중...</div>
+        <div class="loading">로딩 중...</div>
+      </template>
+    </Suspense>
+    <br/><br/>
   </div>
 </template>
 
 <script setup>
-  import { ref, reactive, computed, watch, watchEffect, onMounted } from 'vue'
-  import imageFile2 from '@/assets/image2.jpg'
+  import { ref, reactive, computed, watch, watchEffect, onMounted } from 'vue';
+  import imageFile2 from '@/assets/image2.jpg';
   import ChildComponent from './components/ChildComponent.vue';
   import { useCounterStore } from './stores/counter';
   import ModalBox from './components/ModalBox.vue';
-  import { useModal } from '@/composables/useModal'
+  import { useModal } from '@/composables/useModal';
+  import ChildSlot from './components/ChildSlot.vue';
+  import ChildSlotName from './components/ChildSlotName.vue';
+  import ChildSlotScope from './components/ChildSlotScope.vue';
+  import UserProfile from './components/UserProfile.vue';
 
   // Template 문법 --> Directive
   // v-바인딩 연습
@@ -283,6 +359,9 @@
   // 구조 분해 방식으로 값을 가져 옴
   const { isOpen, open, close } = useModal()
 
+  // Teleport 학습
+  const showModal = ref(false)
+  
 </script>
 
 <style scoped>
@@ -352,5 +431,39 @@
   .close {
     margin-top: 12px;
     background: #ef4444;
+  }
+  .wapper {
+    padding: 30px;
+  }
+  .box {
+    position: relative;
+    width: 400px;
+    height: 200px;
+    border: 2px solid #333;
+    overflow: hidden;
+    padding: 20px;
+    margin-top: 20px;
+    background-color: #f8f8f8;
+  }
+  .modal {
+    position: absolute;
+    top: 120px;
+    left: 50px;
+    width: 300px;
+    height: 220px;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  .modal-content {
+    background: white;
+    padding: 20px;
+    height: 100%;
+    box-sizing: border-box;
+  }
+  .loading {
+    padding: 20px;
+    font-size: 16px;
+
   }
 </style>
