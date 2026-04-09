@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "exclude": ["node_modules", "dist"],
+  "editor.autoClosingTags": "always",
+  "emmet.includeLanguages": {
+    "vue": "html"
+  }
+}
